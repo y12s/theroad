@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>the most popular tours</title>
+    
+    <style type="text/css">
+        html
+        {    
+	        font-family: 'Poppins', sans-serif;
+        }
+		:root
+		{
+			--primary-color: #2b81e4;
+			--secondary-color: #eee;
+			--white-color: #fff;
+			--grey-color: #555;
+			--light-grey-color: #777;
+		}
+		.popular-tours
+		{
+			padding: .5px 0 .5px 0;
+		}
+
+		.popular-tours-heading
+		{
+			font-size: 4rem;
+			text-align: center;
+			margin-bottom: 3rem;
+			color: var(--primary-color);
+			text-shadow: 0 0.1rem 0.2rem var(--primary-color);
+		}
+		.cards-wrapper
+		{
+ 			display: flex;
+			justify-content: space-evenly; 
+		}
+
+
+		.card
+		{
+            width:  15rem;
+            height: 28rem;
+			position: relative;
+			perspective: 150rem;
+		}
+
+
+		.card-image
+		{
+			width: 100%;
+			height: 40%;
+			border-radius: 0.6rem 0.6rem 0 0;
+		}		
+
+
+		.front-side
+		{
+            height: 28rem;
+			text-align: left;
+			background-color: var(--white-color);
+			border-radius: 0.6rem;
+			position: relative;
+			z-index: 10;
+			opacity: .9;
+			transition: opacity.4s, transform.4s, box-shadow.4s;
+		}
+
+
+		.change > .front-side
+		{
+			transform: translateZ(-5rem) translateX(3rem);
+			box-shadow: 0 2rem 4rem #777;
+			opacity: .5;
+			z-index: 0;
+		}
+
+
+		.tour-name
+		{
+            font-size: 1.3rem;
+            margin-left: 0;
+			font-weight: 600;
+			text-transform: uppercase;
+			position: absolute;
+			top: 30%;
+			right: .2rem;
+			color: #fff;
+			text-shadow: 0 0 1rem #000000;
+		}
+
+		.card-list
+		{
+            width: 70%;
+            margin-left: 15%;
+			padding: 0;
+		}
+
+		.card-list-item
+		{
+            font-size: 1rem;
+            text-align: center;
+			font-weight: 500;
+			color: var(--light-grey-color);
+			margin: .6rem 0;
+			border-bottom: .1rem solid var(--primary-color);
+			padding-bottom: .9rem;
+            padding-bottom: .9rem;
+            list-style: none;
+		}
+
+		.back-side
+		{
+			position: absolute;
+			top: 0;
+			background-color: var(--primary-color);
+			width: 95%;
+			height: 100%;
+			border-radius: 0.7rem;
+			box-shadow: 0 2rem 4rem #777;
+			flex-direction: column;
+			transform: translateZ(-5rem) translateX(3rem);
+			opacity: .5;
+			transition: opacity.4s, transform.4s, box-shadow.4s;
+		}
+
+		.change > .back-side
+		{
+			transform: translateZ(0) translateX(0);
+			box-shadow: 0 .5rem 2rem #aaa;
+			opacity: 0.9;
+		}
+
+		.tour-price
+		{
+            font-size: 3rem;
+			font-weight: 300;
+			color: var(--white-color);
+            margin-bottom: 3rem;
+            margin-top: 8rem;
+            margin-left: 26%;
+		}
+
+		.card-button{
+			color: var(--primary-color);
+			background-color: var(--white-color);
+            border: none;
+            margin-left: 14%;
+			font-size: 1.5rem;
+			font-weight: 500;
+			padding: 1rem 2rem;
+			letter-spacing: .1rem;
+			border-radius: 5rem;
+            cursor: pointer;
+            align-items: center;
+        }
+        .card-button:focus
+        {
+            outline: none;
+		}
+		
+		.card-button a:link
+		{
+			color: var(--primary-color);
+			background-color: transparent;
+			text-decoration: none;
+		}
+		.card-button a:visited
+		{
+			color: var(--primary-color);
+			background-color: transparent;
+			text-decoration: none;
+		}
+		.card-button a:hover
+		{
+			color: var(--primary-color);
+			background-color: transparent;
+			text-decoration: none;
+		}
+		.card-button a:active
+		{
+			color: var(--primary-color);
+			background-color: transparent;
+			text-decoration: none;
+		}
+
+		.navigation-button
+		{
+			position: absolute;
+			top: .3rem;
+			left: .3rem;
+			cursor: pointer;
+			padding: .3rem;
+			background-color: #fff;
+			color: var(--light-grey-color);
+			border-radius: .5rem;
+			border: none;
+			font-size: .8rem;
+			font-weight: 400;
+			text-transform: uppercase;
+			letter-spacing: .1rem;
+		}
+        .navigation-button:focus
+        {
+            outline: none;
+        }
+
+        @media(max-width: 1200px){
+	 		.cards-wrapper
+	 		{
+			 	flex-direction: column;
+				align-items: center;
+	 		}
+	 		.card
+	 		{
+				margin: 3rem 0;
+	 		}
+
+	 		.story-bg
+	 		{
+				width: 85%;
+	 		}
+		}
+
+		@media(max-width: 1000px)
+		{
+			.popular-tours-heading
+			{
+				font-size: 4rem;
+			}
+		}
+
+		@media(max-width: 800px)
+		{
+			.popular-tours-heading
+			{
+				font-size: 4rem;
+			}
+		}
+
+
+		@media(max-width: 500px)
+		{
+			html
+			{
+				font-size: 45%;
+			}
+		}
+
+	</style>
+</head>
+<body>
+	<!--popular starts-->
+
+		<section class="popular-tours" id="popular-toursid">
+			<h1 class="popular-tours-heading">
+				The Most Popular Tours
+			</h1>
+			<div class="cards-wrapper">
+				<div class="card">
+					<div class="front-side">
+						<img src="images/forest.jpg" alt="Forest" class="card-image">
+						<h1 class="tour-name">The Wild Forest</h1>
+						<ul class="card-list">
+							<li class="card-list-item">7 Days Tour</li>
+							<li class="card-list-item">Up To 20 People</li>
+							<li class="card-list-item">4 Tour Guides</li>
+							<li class="card-list-item">Sleep in Private Tents </li>
+							<li class="card-list-item">Difficulty:Medium</li>
+						</ul>
+						<button class="navigation-button">Price &gt;&gt;</button>
+					</div>
+					<div class="back-side center">
+						<button class="navigation-button">&lt;&lt; Back </button>
+						<h3 class="tour-price">$399</h3>
+						<button class="card-button"> <a href="file:///C:/Yatharth
+							/coding/html%20and%20css/html%20and%
+							20css%20websites/full%20responsive%20webs
+							ite%202/support
+							/tours/booking/index.html">Booking</a> </button>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="front-side">
+						<img src="images/River.jpg" alt="River" class="card-image">
+						<h1 class="tour-name">Along The River</h1>
+						<ul class="card-list">
+							<li class="card-list-item">9 Days Tour</li>
+							<li class="card-list-item">Up To 30 People</li>
+							<li class="card-list-item">7 Tour Guides</li>
+							<li class="card-list-item">Sleep in Private Tents </li>
+							<li class="card-list-item">Difficulty:hard</li>
+						</ul>
+						<button class="navigation-button">Price &gt;&gt;</button>
+					</div>
+					<div class="back-side center">
+						<button class="navigation-button">&lt;&lt; Back </button>
+						<h3 class="tour-price">$499</h3>
+						<button class="card-button"><a href="file:///C:/Yatharth
+							/coding/html%20and%20css/html%20and%
+							20css%20websites/full%20responsive%20webs
+							ite%202/support
+							/tours/booking/index.html">Booking</a></button>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="front-side">
+						<img src="images/sea.jpg" alt="Sea" class="card-image">
+						<h1 class="tour-name">The Island Beach</h1>
+						<ul class="card-list">
+							<li class="card-list-item">5 Days Tour</li>
+							<li class="card-list-item">Up To 40 People</li>
+							<li class="card-list-item">8 Tour Guides</li>
+							<li class="card-list-item">Sleep in Hotel </li>
+							<li class="card-list-item">Difficulty:Easy</li>
+						</ul>
+						<button class="navigation-button">Price &gt;&gt;</button>
+					</div>
+					<div class="back-side center">
+						<button class="navigation-button">&lt;&lt; Back </button>
+						<h3 class="tour-price">$599</h3>
+						<button class="card-button"><a href="file:///C:/Yatharth
+							/coding/html%20and%20css/html%20and%
+							20css%20websites/full%20responsive%20webs
+							ite%202/support
+							/tours/booking/index.html">Booking</a></button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--popular ends-->
+</body>
+<script type="text/javascript">
+	
+Array.from(document.querySelectorAll
+(".navigation-button")).forEach(item => {
+    item.onclick = () => {
+        item.parentElement.parentElement.classList.toggle("change");
+    };
+});
+</script>
+</html>
